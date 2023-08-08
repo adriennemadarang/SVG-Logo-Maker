@@ -48,11 +48,62 @@ const questions = [
 
 // Function to write data to fs
 function writeToFile(fileName, data) {
-    console.log("writing [" + data + "] to file [" + fileName +"]")
+    console.log("writing [" + data + "] to file [" + fileName + "]")
     fs.writeFile(fileName, data, function (err) {
-if (err) {
-    return console.log(err);
-}
-console.log("Congrats! Here is your generated logo!");
+        if (err) {
+            return console.log(err);
+        }
+        console.log("Congrats! Here is your generated logo!");
     });
 }
+
+async function init() {
+    console.log("Starting init");
+    var svgString = "";
+    var svgFile = "logo.svg";
+
+    const answers = await inquirer.prompt(questions);
+
+    var userText = "";
+    if (answers.text.length > 0 && answers.text.length < 4) {
+        userText = answers.text;
+    }
+    else {
+        console.log("Please enter 1-3 characters.");
+        return;
+    }
+    console.log("Text: [" + userText + "]");
+    fontColor = answers["text-color"];
+    console.log("Font color: [" + fontColor + "]");
+    shapeColor = answers.shape;
+    console.log("Shape color: [" + shapeColor + "]");
+    shape = answers["shape"];
+    console.log("User chose shape = [" + shape + "]");
+
+    let shapeType;
+    if (shape === "Square") {
+        shapeType = new Square();
+        console.log("square selected");
+    }
+    else if (shape === "Circle") {
+        shapeType = new Circle();
+        console.log("Circle selected");
+    }
+    else if (shape === "Triangle") {
+    shapeType = new Triangle();
+    console.log("Triangle selected");
+    }
+    else {
+        console.log("invalid shape");
+    }
+shapeType.setColor(shapeColor);
+
+var svg = new Svg();
+svg.setTextElement(userText, fontColor);
+svg.setShapeElement(shapeType);
+svgString = svg.render();
+
+writeToFile(svgFile, svgString);
+}
+
+init()
