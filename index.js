@@ -17,7 +17,7 @@ const questions = [
 
     {
         type: "input",
-        name: "shape-color",
+        name: "shapeColor",
         message: "Shape Color: Enter a color or number:"
     },
     {
@@ -27,13 +27,13 @@ const questions = [
     },
     {
         type: "input",
-        name: "text-color",
+        name: "textColor",
         message: "Text Color: Enter a color or number:"
     },
 ];
 
 
-function createLogo(reponse) {
+function createLogo(response) {
     const svg = shapeChoice(response);
     fs.writeFile(fileName, svg, ()=> console.log("Congrats! Here is your generated logo!"));
 }
