@@ -1,15 +1,15 @@
 # SVG-Logo-Maker
 
-# Description
+## Description
 Th SVG logo maker allows users to answer prompts in order to generate a custom logo
 
-# User Story 
+## User Story 
 AS a freelance web developer<br>
 I WANT to generate a simple logo for my projects<br>
 SO THAT I don't have to pay a graphic designer<br>
 
-# Acceptance Criteria
-IVEN a command-line application that accepts user input<br>
+## Acceptance Criteria
+GIVEN a command-line application that accepts user input<br>
 WHEN I am prompted for text<br>
 THEN I can enter up to three characters<br>
 WHEN I am prompted for the text color<br>
